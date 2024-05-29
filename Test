@@ -6,7 +6,7 @@ rule <largeFileSize>{
 
     events:
         $content_Update.metadata.event_type = "USER_RESOURCE_UPDATE_CONTENT" 
-        $download.metadata.event_type = "download" nocase
+        $download.metadata.event_type = /download/ nocase
     condition:
         filesize > 2GB OR filesize <= 150MB = $size
 
