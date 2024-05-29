@@ -1,1 +1,20 @@
 
+rule <largeFileSize>{
+    meta:
+        author = "Phemz0"
+        description = "Matches when fileSize value is < 150MB and > "
+
+    events:
+        $content_Update.metadata.event_type = "USER_RESOURCE_UPDATE_CONTENT" 
+        $download.metadata.event_type = "download" nocase
+    condition:
+        filesize > 2GB OR filesize <= 150MB = $size
+
+    match:
+        $size $download
+
+    condition:
+        #download <= 1
+
+}
+//This is my first attempt don't laugh, no idea if it works or how to test it.
