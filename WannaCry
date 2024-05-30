@@ -1,7 +1,30 @@
+
+
 rule detectWannaCry{
 
-author = "Phemz0"
+    meta:
+        author = "Phemz0"
+        description = "Detects WannaCry malware file characteristics"
+        severity = "Crirtcal"
+        product = "Windows" //interchangeable value
 
+    events:
+        ($e1.src.file.md5 = "db349b97c37d22f5ea1d1841e3c89eb4" OR $e1.src.file.md5 = "84c82835a5d21bbcf75a61706d8ab549" OR $e1.src.file.md5 = "f351e1fcca0c4ea05fc44d15a17f8b36" OR $e1.src.file.md5 = "7bf2b57f2a205768755c07f238fb32cc" OR )
+        ($e1.about.file.md5 = "db349b97c37d22f5ea1d1841e3c89eb4" OR $e1.about.file.md5 = "84c82835a5d21bbcf75a61706d8ab549" OR $e1.about.file.md5 = "f351e1fcca0c4ea05fc44d15a17f8b36" OR $e1.about.file.md5 = "7bf2b57f2a205768755c07f238fb32cc" OR  )
+        ($e1.target.file.md5 = "db349b97c37d22f5ea1d1841e3c89eb4" OR $e1.target.file.md5 = "84c82835a5d21bbcf75a61706d8ab549" OR $e1.target.file.md5 = "f351e1fcca0c4ea05fc44d15a17f8b36" OR $e1.target.file.md5 = "7bf2b57f2a205768755c07f238fb32cc" OR )
+        ($e1.principal.file.md5 = "db349b97c37d22f5ea1d1841e3c89eb4" OR  $e1.principal.file.md5 = "84c82835a5d21bbcf75a61706d8ab549" OR $e1.principal.file.md5 = "f351e1fcca0c4ea05fc44d15a17f8b36" OR $e1.principal.file.md5 = "7bf2b57f2a205768755c07f238fb32cc" OR )
 
+        ($e1.src.file.name = "mssecsvc.exe	" or $e1.about.file.name = "mssecsvc.exe" or $e1.target.file.name = "mssecsvc.exe" or $e1.principal.file.name = "mssecsvc.exe")
+        ($e1.about.file.name = "tasksche.exe" OR $e1.about.file.name = "tasksche.exe" OR $e1.about.file.name = "tasksche.exe" OR $e1.about.file.name = "tasksche.exe")
+        ($e2.target.file.name = "Unavailable" OR $e2.target.file.name = "Unavailable" OR $e2.target.file.name = "Unavailable" OR $e2.target.file.name = "Unavailable" AND  )
+        ($e1.principal.file.name = "@WanaDecryptor@.exe" OR $e1.principal.file.name = "@WanaDecryptor@.exe" OR $e1.principal.file.name = "@WanaDecryptor@.exe" OR $e1.principal.file.name = "@WanaDecryptor@.exe")
+
+    condition:
+        $e1
+        (filesize == 65536) and ($e2 == "Unavailable")
 
 }
+
+
+
+//Must be a better way to do this. Think condition is fucked up, will change it when I learn how to
