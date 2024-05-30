@@ -5,14 +5,20 @@ rule<dataExfiltration>{
         description "Detects when 1250 FILES downloaded over the period of 1.5h (90m),"
 
     events:
-         $e1.event_type = "\"event_type\":\"FILE_OPERATION\"" nocase
-         $e1.download_type = "\"type\":\"DOWNLOAD\"" nocase
+         $e1.metadata_event.type = "FILE_OPERATION" nocase
+         $e1.metadata.product_event_type = "Filedownloaded"
+         $e1.O365_total_download_actions <= "1500" nocase
          principal.user = $user
 
-         //not $e1.all (companyName) approved contacts. 
+         not principal.user = "app@sharepoint"
+
+         //--> not $e1.all (companyName) approved contacts. 
     match:
         $user over 1.5h
 
     condition:
         #e1 >= 1500 
 }
+
+
+//******Second attempt, try not to laugh as much as the first one lol******
