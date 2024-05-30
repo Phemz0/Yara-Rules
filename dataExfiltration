@@ -1,1 +1,18 @@
+rule<dataExfiltration>{
 
+    meta: 
+        author "Phemz0"
+        description "Detects when 1250 FILES downloaded over the period of 1.5h (90m),"
+
+    events:
+         $e1.event_type = "\"event_type\":\"FILE_OPERATION\"" nocase
+         $e1.download_type = "\"type\":\"DOWNLOAD\"" nocase
+         principal.user = $user
+
+         //not $e1.all (companyName) approved contacts. 
+    match:
+        $user over 1.5h
+
+    condition:
+        #e1 >= 1500 
+}
