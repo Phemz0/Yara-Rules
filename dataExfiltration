@@ -6,13 +6,10 @@ rule<dataExfiltration>{
 
     events:
          $e1.metadata_event.type = "FILE_OPERATION" nocase
-         $e1.metadata.product_event_type = "Filedownloaded"
-         $e1.O365_total_download_actions <= "1500" nocase
+         $e1.metadata.product_event_type = "filedownloaded"nocase
          principal.user = $user
 
-         not principal.user = "app@sharepoint"
-
-         //--> not $e1.all (companyName) approved contacts. 
+         //not principal.user = "x" Change x wiith authorised users / approved users.
     match:
         $user over 1.5h
 
