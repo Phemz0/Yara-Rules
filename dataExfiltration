@@ -1,8 +1,8 @@
 rule<dataExfiltration>{
 
     meta: 
-        author "Phemz0"
-        description "Detects when 1250 FILES downloaded over the period of 1.5h (90m),"
+        author = "Phemz0"
+        description = "Detects when 1250 FILES downloaded over the period of 1.5h (90m),"
 
     events:
          $e1.metadata_event.type = "FILE_OPERATION" nocase
