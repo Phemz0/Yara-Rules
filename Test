@@ -1,5 +1,5 @@
 
-rule <largeFileSize>{
+rule largeFileSize {
     meta:
         author = "Phemz0"
         description = "Matches when fileSize value is < 150MB and > "
