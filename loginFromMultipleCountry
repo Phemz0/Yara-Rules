@@ -17,5 +17,3 @@ rule loginFromMultipleCountry{
   condition:
     $e1 and #country > 1 
 }
-
-//
