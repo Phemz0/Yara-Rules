@@ -1,0 +1,28 @@
+//Link to src - https://tdm.socprime.com/tdm/info/Pvr4eDPq87Fs/#chronicle
+// Combined all process paths and file extensions into a single regex pattern
+
+rule office_macro_file_download {
+  meta:
+    author = "Nasreddine Bencherchali (Nextron Systems) & Phemz0"
+    description = "Detects the creation of new Office macro files on the system via common applications (browser, mail client)."
+    license = "https://github.com/Neo23x0/sigma/blob/master/LICENSE.Detection.Rules.md"
+    reference = "https://tdm.socprime.com/tdm/info/Pvr4eDPq87Fs"
+    version = "0.02"
+    sigma_id = "0e29e3a7-1ad8-40aa-b691-9f82ecd33d66"
+    status = "experimental"
+    tags = ["attack.initial_access", "attack.t1566.001"]
+    falsepositives = ["Legitimate macro files downloaded from the internet", "Legitimate macro files sent as attachments via emails"]
+    severity = "medium"
+    created = "2022-01-23"
+    category = "file_event"
+    product = "windows"
+
+  events:
+    re.regex($selection_processes.target.process.file.full_path, `.*\\(RuntimeBroker|outlook|thunderbird|brave|chrome|firefox|iexplore|maxthon|MicrosoftEdge|msedge|msedgewebview2|opera|safari|seamonkey|vivaldi|whale)\.exe$`, nocase) and 
+    (
+      re.regex($selection_processes.target.file.full_path, `.*\.(docm|dotm|xlsm|xltm|potm|pptm)(:Zone.*)?$`, nocase)
+    )
+
+  condition:
+    $selection_processes
+}
