@@ -10,5 +10,5 @@ rule AADObjectModification{
    $e1.metadata.product_event_type = "5136"
 
   condition:
-  $e1
+  $e1+
 }
