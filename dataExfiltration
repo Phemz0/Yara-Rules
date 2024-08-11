@@ -1,4 +1,4 @@
-rule<dataExfiltration>{
+rule dataExfiltration {
 
     meta: 
         author = "Phemz0"
