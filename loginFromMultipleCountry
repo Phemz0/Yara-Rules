@@ -1,1 +1,21 @@
+rule loginFromMultipleCountry{
+  
+  meta:
+    author = "Phemz0"
+    description "Detects when a single user performs a login from multiple different countries within a 10m period"
 
+  events:
+    $e1.metadata.event_type = "USER_LOGIN"
+    $e1.principal.user.userid = $userName
+    $e1.principal.location.country_or_region = $country
+
+    not principal.user.office_address.country_or_region = $country
+
+  match:
+    user over 10m
+
+  condition:
+    $e1 and #country > 1 
+}
+
+//
