@@ -1,1 +1,14 @@
+// Rule name should be AAD, not AAZ, no idea how to change it, and am too lazy to delete the file 
 
+rule AADObjectModification{
+
+  meta:
+    author = "Phemz0"
+    description = "Detects when a directory service object was modified."
+
+  events:
+   $e1.metadata.product_event_type = "5136"
+
+  condition:
+  $e1
+}
