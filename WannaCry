@@ -7,7 +7,7 @@ rule detectWannaCry {
         description = "Detects WannaCry malware file characteristics"
         severity = "Critical"
         product = "Windows" // interchangeable value
-
+ 
     events:
         ($e1.src.file.md5 == "db349b97c37d22f5ea1d1841e3c89eb4" OR
          $e1.src.file.md5 == "84c82835a5d21bbcf75a61706d8ab549" OR
