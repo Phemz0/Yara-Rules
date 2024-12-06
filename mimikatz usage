@@ -1,14 +1,17 @@
-meta{
-author
-condition
+rule mimikatz_usage {
  
+  meta:
+    author = "HH"
+    description = "Rule to detect usage of mimikatz "
+    severity = "Medium"
 
-events
+  events:
+    
+    $e1.metadata.description  = "4688" or // 4688: A new process has been created
+    $e1.metadata.event_type = "PROCESS_LAUNCH" 
+    $e1.target.process.command_line = "mimikatz" or 
+    $e1.target.process.command_line = /mimikatz/
 
-
-
-condition
-
-
-
+  condition:
+    $e1
 }
