@@ -1,0 +1,19 @@
+rule whoami_usage {
+
+  meta:
+    author = "HH"
+    description = "Detects when a user executes whoami /groups"
+    severity = "medium"
+    attack_technique = "System Owner/User Discovery"
+
+  events:
+
+    $event.metadata.event_type = "PROCESS_LAUNCH"
+    $event.target.process.command_line = /whoami/ and
+    $event.target.process.command_line = /groups/ // unable to place this in one line as escaping the / with a / created an error/
+
+
+  condition:
+    $event
+
+}
