@@ -1,0 +1,30 @@
+rule multi_event_rule_test {
+
+  meta:
+        author =     "HH"
+        description = "Brute force detections"
+        severity =    "high"
+
+    events:
+        $failedEvent.metadata.event_type = "USER_LOGIN"
+        $failedEvent.metadata.vendor_name = "Microsoft"
+        $failedEvent.principal.hostname = $targetHostname
+        $failedEvent.target.user.userid = $targetHostname
+        $failedEvent.security_result.category = "AUTH_VIOLATION"
+        $failedEvent.security_result.action = "BLOCK" 
+        $failedEvent.metadata.event_timestamp.seconds <= $successfulEvent.metadata.event_timestamp.seconds
+
+        $successfulEvent.metadata.event_type = "USER_LOGIN"
+        $successfulEvent.target.user.userid = $targetUsername 
+        $successfulEvent.principal.hostname = $targetHostname 
+        $successfulEvent.security_result.action = "ALLOW"
+        $successfulEvent.metadata.product_event_type != "4648"
+
+
+    match:
+        $targetUsername, $targetHostname over 15m
+
+
+    condition:
+        #failedEvent > 4 and $successfulEvent
+}
