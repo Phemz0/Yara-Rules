@@ -27,6 +27,8 @@ rule mitre_attack_T1021_002_windows_admin_share_basic {
 
 }
 
+------------------------------------------------------------------------------
+// Ignore unless u dont understand placeholder vars like me :)
 
 //Lines 14 and 15 - It’s like writing down someone’s phone number on a piece of paper and then using that paper whenever you need to call that person later, instead of looking up their number again.
 //What is a "Placeholder"?
