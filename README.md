@@ -24,3 +24,11 @@ Condition
 Describes the events and other conditions that must be true for a detection.
 Options (optional)
 Options to turn on or off while executing this rule
+
+
+
+--------------------------------------------------------
+
+Roadmap
+
+Make an entity.principal.user.department rule
