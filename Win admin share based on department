@@ -1,0 +1,28 @@
+rule mitre_attack_T1021_002_windows_admin_share_basic {
+
+  meta:
+    author = "Google Cloud Security | HH"
+    description = "Detect the use of net use for SMB/Windows admin shares"
+    platform = "Windows"
+    severity = "Low"
+    
+  events:
+
+    $event.metadata.event_type = "PROCESS_LAUNCH"
+    $event.target.process.command_line = /net.*use.*(C|ADMIN|IPC)\$/ nocase
+
+    $event.principal.user.userid = $targetuser
+    $user.graph.entity.user.userid  = $targetuser
+
+    $user.graph.metadata.entity_type = "USER"
+    $user.graph.entity.user.title != /intern/ nocase or
+    $user.graph.entity.user.department != /Information Technology/ nocase
+
+  match:
+    $targetuser over 5m
+
+
+  condition:
+    $event and $user
+
+}
