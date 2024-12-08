@@ -1,4 +1,5 @@
-
+// This doesnt work at all, incorrect syntax etc.
+// Was used to learn
 
 rule detectWannaCry {
 
