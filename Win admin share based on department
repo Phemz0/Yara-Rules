@@ -29,3 +29,34 @@ rule mitre_attack_T1021_002_windows_admin_share_basic {
 
 
 //Lines 14 and 15 - It’s like writing down someone’s phone number on a piece of paper and then using that paper whenever you need to call that person later, instead of looking up their number again.
+//What is a "Placeholder"?
+//Think of a placeholder like a "blank space" that you can fill with some information. It's like a label or a variable you can use to store something, and later, you can replace that placeholder with actual data.
+
+The Event Section
+The "event section" is just a part of a system (or code) where things happen, like when a user clicks a button or when some data is received. Events in programming are things that occur, and you can track them or trigger actions based on them.
+
+What’s happening in your example?
+$event.target.user.userid = $targetUser
+In this case:
+
+$event.target.user.userid is the placeholder for a user’s ID (a unique number or value that identifies that user).
+$targetUser is another placeholder that holds a value.
+So, what’s happening here is you’re saying, "Hey, take the user ID from this specific event, and store it in the placeholder called $targetUser."
+Now, $targetUser is holding the user ID from that event.
+
+Why use this?
+You’ll want to use placeholders like this when you have multiple things happening, and you want to link them together. For example, if you have multiple events and want to make sure they all refer to the same user, you can use $targetUser to match the user across those different events.
+
+Outcome Section
+You can also use these placeholders in the "outcome section" (this is where you define what happens after an event). The outcome might depend on the user ID you stored earlier. So, if you used $targetUser to remember a user’s ID in the event section, you could later use that ID to make decisions in the outcome section.
+
+In simpler terms:
+You take something important (like a user’s ID) from one place (the event), stick it into a "box" (a placeholder), and then use that "box" (the placeholder) to refer to it later, in other places (other events or outcomes).
+It’s like writing down someone’s phone number on a piece of paper and then using that paper whenever you need to call that person later, instead of looking up their number again.
+
+
+
+
+
+
+
