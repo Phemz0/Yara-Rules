@@ -4,7 +4,7 @@ rule largeFileSize {
         author = "Phemz0"
         description = "Matches when fileSize value is < 150MB and > "
 
-    events:
+    events: 
         $content_Update.metadata.event_type = "USER_RESOURCE_UPDATE_CONTENT" 
         $download.metadata.event_type = /download/ nocase
     condition:
