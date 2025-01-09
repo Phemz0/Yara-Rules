@@ -1,3 +1,6 @@
+// used for learning. Doesnt work - Amendments needed
+
+
 rule loginFromMultipleCountry{
   
   meta:
