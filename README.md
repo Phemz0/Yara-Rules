@@ -29,6 +29,3 @@ Options to turn on or off while executing this rule
 
 --------------------------------------------------------
 
-Roadmap
-
-Make an entity.principal.user.department rule
