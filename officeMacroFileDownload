@@ -3,7 +3,7 @@
 
 rule office_macro_file_download {
   meta:
-    author = "Nasreddine Bencherchali (Nextron Systems) & Phemz0"
+    author = "Nasreddine Bencherchali (Nextron Systems) & HH"
     description = "Detects the creation of new Office macro files on the system via common applications (browser, mail client)."
     license = "https://github.com/Neo23x0/sigma/blob/master/LICENSE.Detection.Rules.md"
     reference = "https://tdm.socprime.com/tdm/info/Pvr4eDPq87Fs"
