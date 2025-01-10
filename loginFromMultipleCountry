@@ -15,8 +15,8 @@ rule loginFromMultipleCountry{
     not principal.user.office_address.country_or_region = $country
 
   match:
-    user over 10m
+    userName over 10m
 
   condition:
-    $e1 and #country > 1 
+     #country > 1 
 }
